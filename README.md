@@ -26,44 +26,12 @@ The agent leverages a knowledge graph stored in Neo4j containing information abo
         *   **Cypher Query Execution**: Interacts with the Neo4j database.
 3.  **Neo4j Database**: Stores the structured knowledge graph about drugs, side effects, cases, and manufacturers.
 
-## Setup
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/d0a3880c-190f-4d2c-abdf-5f67788187e5" alt="k" />
+</p>
 
-1.  **Clone the repository (if applicable)**
-2.  **Install Dependencies**:
-    ```bash
-    pip install --upgrade --quiet langchain-nvidia-ai-endpoints langchain-community neo4j langchain-core neo4j-driver
-    ```
-3.  **Environment Variables**: Set the following environment variables before running the notebook. You can set these directly in your environment or modify the relevant cells in the `healthcare-agent.ipynb` notebook.
-    *   `NEO4J_URI`: Your Neo4j instance URI (e.g., `bolt://localhost:7687`)
-    *   `NEO4J_USERNAME`: Your Neo4j username
-    *   `NEO4J_PASSWORD`: Your Neo4j password
-    *   `NVIDIA_API_KEY`: Your NVIDIA API key for accessing Llama 3.1.
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/a4910038-b62f-4a65-86f4-081cecdcbd23" alt="2" />
+</p>
 
-4.  **Neo4j Database Setup**:
-    *   Ensure your Neo4j database is running and accessible.
-    *   The notebook assumes the existence of `Drug`, `Manufacturer`, `Case`, and `Reaction` nodes with appropriate relationships (`HAS_REACTION`, `IS_PRIMARY_SUSPECT`, `REGISTERED`).
-    *   The notebook attempts to create necessary full-text indexes (`drug`, `manufacturer`). Ensure your Neo4j user has permissions to create indexes.
 
-## Usage
-
-1.  Open and run the `healthcare-agent.ipynb` Jupyter Notebook.
-2.  Ensure the environment variables for Neo4j and NVIDIA API Key are correctly set within the notebook or your system environment.
-3.  Execute the cells sequentially.
-4.  The notebook sets up the database connection, LLM, entity linking functions, the `get_side_effects` tool, and the LangChain agent.
-5.  Interact with the agent using the `agent_executor.invoke()` method in the final cells, providing your questions as input.
-
-## Example Queries
-
-```python
-# Example invocation within the notebook
-agent_executor.invoke(
-    {
-        "input": "What are the most common side effects when using lyrica for people below 35 years old?"
-    }
-)
-
-agent_executor.invoke(
-    {
-        "input": "What are the most common side effects for drugs manufactured by acadia?"
-    }
-)
